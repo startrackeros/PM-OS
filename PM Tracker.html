@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meet Shah — PM Career Dossier</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:    #F7F4EF;
+  --cream2:   #F0EDE6;
+  --cream3:   #E8E3DA;
+  --parchment:#DDD6CA;
+  --warm-mid: #C4BAA8;
+  --ink:      #1A1916;
+  --ink2:     #3D3A34;
+  --ink3:     #6B6660;
+  --ink4:     #9E9890;
+  --ink5:     #C4BFBA;
+  --sage:     #7A9080;
+  --sage-l:   #EBF0EC;
+  --mahog:    #6B3F2A;
+  --mahog-l:  #F5EDE8;
+  --gold:     #B8912A;
+  --gold-l:   #FBF5E6;
+  --slate:    #4A5568;
+  --slate-l:  #EEF1F5;
+  --rose:     #9E5A5A;
+  --rose-l:   #F9EFEF;
+  --display:  'Cormorant Garant', Georgia, serif;
+  --body:     'DM Sans', system-ui, sans-serif;
+  --mono:     'Space Mono', monospace;
+  --sh1: 0 1px 3px rgba(26,25,22,0.06), 0 4px 16px rgba(26,25,22,0.04);
+  --sh2: 0 2px 8px rgba(26,25,22,0.08), 0 8px 32px rgba(26,25,22,0.06);
+  --sh3: 0 4px 24px rgba(26,25,22,0.12), 0 1px 3px rgba(26,25,22,0.08);
+  --r: 10px;
+  --r2: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body { font-family: var(--body); background: var(--cream); color: var(--ink); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+/* ── LAYOUT ── */
+.shell { display: flex; min-height: 100vh; }
+.sidebar { width: 256px; min-width: 256px; background: var(--ink); position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; z-index: 40; }
+.main { margin-left: 256px; flex: 1; min-height: 100vh; background: var(--cream); }
+
+/* ── SIDEBAR ── */
+.sb-top { padding: 32px 24px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.sb-eyebrow { font-family: var(--mono); font-size: 9px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+.sb-name { font-family: var(--display); font-size: 26px; font-weight: 500; color: #F7F4EF; line-height: 1.1; letter-spacing: 0.01em; }
+.sb-role { font-size: 12px; color: rgba(247,244,239,0.45); margin-top: 6px; font-weight: 300; }
+.sb-role em { color: rgba(184,145,42,0.9); font-style: normal; }
+
+/* Score widget */
+.sb-score { margin: 20px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--r2); padding: 20px; }
+.sb-score-label { font-family: var(--mono); font-size: 9px; color: rgba(247,244,239,0.35); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.sb-score-num { font-family: var(--display); font-size: 52px; font-weight: 300; color: #F7F4EF; line-height: 1; letter-spacing: -0.02em; }
+.sb-score-unit { font-family: var(--display); font-size: 22px; font-weight: 300; color: rgba(247,244,239,0.5); }
+.sb-delta { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+.sb-delta.up { background: rgba(122,144,128,0.25); color: #A8C4AD; }
+.sb-delta.flat { background: rgba(184,145,42,0.15); color: rgba(184,145,42,0.9); }
+
+/* Sub scores */
+.sb-subs { padding: 4px 0 8px; }
+.ssub-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; }
+.ssub-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.ssub-name { font-size: 11px; color: rgba(247,244,239,0.45); flex: 1; font-weight: 300; }
+.ssub-track { flex: 1; height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px; max-width: 64px; overflow: hidden; }
+.ssub-fill { height: 100%; border-radius: 2px; transition: width 0.8s cubic-bezier(.4,0,.2,1); }
+.ssub-val { font-family: var(--mono); font-size: 10px; color: rgba(247,244,239,0.3); width: 28px; text-align: right; }
+
+/* Nav */
+.nav-section { padding: 8px 12px 4px; }
+.nav-section-label { font-family: var(--mono); font-size: 8px; letter-spacing: 2.5px; color: rgba(247,244,239,0.2); padding: 8px 12px 4px; text-transform: uppercase; }
+.nav-item { display: flex; align-items: center; gap: 11px; width: 100%; padding: 9px 12px; border-radius: 8px; border: none; background: none; color: rgba(247,244,239,0.45); cursor: pointer; font-family: var(--body); font-size: 12.5px; font-weight: 400; text-align: left; transition: all 0.15s; }
+.nav-item:hover { background: rgba(255,255,255,0.05); color: rgba(247,244,239,0.8); }
+.nav-item.active { background: rgba(184,145,42,0.12); color: rgba(247,244,239,0.95); font-weight: 500; }
+.nav-item .ni { width: 30px; height: 30px; border-radius: 8px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; transition: background 0.15s; }
+.nav-item.active .ni { background: rgba(184,145,42,0.2); }
+.nav-item .nbadge { margin-left: auto; font-family: var(--mono); font-size: 9px; color: rgba(247,244,239,0.25); background: rgba(255,255,255,0.06); padding: 2px 7px; border-radius: 3px; }
+
+.sb-footer { margin-top: auto; padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.06); font-family: var(--mono); font-size: 9px; color: rgba(247,244,239,0.2); line-height: 1.8; letter-spacing: 0.5px; }
+.sb-footer em { color: rgba(184,145,42,0.6); font-style: normal; }
+
+/* ── PAGES ── */
+.page { display: none; padding: 40px 40px 60px; animation: pageIn 0.25s ease; }
+.page.active { display: block; }
+@keyframes pageIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ── PAGE HEADER ── */
+.ph { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--cream3); }
+.ph-eyebrow { font-family: var(--mono); font-size: 9px; letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+.ph-title { font-family: var(--display); font-size: 36px; font-weight: 400; color: var(--ink); line-height: 1.1; letter-spacing: -0.01em; }
+.ph-sub { font-size: 13px; color: var(--ink3); margin-top: 6px; font-weight: 300; line-height: 1.6; }
+.ph-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+
+/* ── CARDS ── */
+.card { background: #FDFAF6; border: 1px solid var(--cream3); border-radius: var(--r2); padding: 24px; box-shadow: var(--sh1); }
+.card-sm { background: #FDFAF6; border: 1px solid var(--cream3); border-radius: var(--r); padding: 16px; box-shadow: var(--sh1); }
+.card-inset { background: var(--cream2); border: 1px solid var(--parchment); border-radius: var(--r); padding: 14px; }
+
+/* ── SECTION LABEL ── */
+.slabel { font-family: var(--mono); font-size: 9px; letter-spacing: 2.5px; color: var(--ink4); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+.slabel::after { content: ''; flex: 1; height: 1px; background: var(--cream3); }
+
+/* ── GRID ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+
+/* ── STAT CARDS ── */
+.stat-card { background: #FDFAF6; border: 1px solid var(--cream3); border-radius: var(--r2); padding: 22px; box-shadow: var(--sh1); position: relative; overflow: hidden; transition: box-shadow 0.2s; }
+.stat-card:hover { box-shadow: var(--sh2); }
+.stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; border-radius: var(--r2) var(--r2) 0 0; }
+.stat-card.sage::before { background: var(--sage); }
+.stat-card.gold::before { background: var(--gold); }
+.stat-card.mahog::before { background: var(--mahog); }
+.stat-card.slate::before { background: var(--slate); }
+.sc-label { font-family: var(--mono); font-size: 9px; color: var(--ink4); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+.sc-num { font-family: var(--display); font-size: 38px; font-weight: 400; color: var(--ink); line-height: 1; letter-spacing: -0.02em; }
+.sc-hint { font-size: 11px; color: var(--ink4); margin-top: 6px; font-weight: 300; }
+.sc-delta { font-size: 11px; font-weight: 500; margin-top: 5px; }
+.sc-delta.up { color: var(--sage); }
+
+/* ── PROGRESS ── */
+.prog-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink3); margin-bottom: 6px; }
+.prog-labels span:last-child { font-family: var(--mono); font-size: 10px; }
+.prog-track { background: var(--cream3); border-radius: 3px; height: 4px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 3px; transition: width 0.7s cubic-bezier(.4,0,.2,1); }
+
+/* ── TIMELINE / ROADMAP ── */
+.rm-phase { margin-bottom: 6px; }
+.rm-phase-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--cream2); border-radius: var(--r) var(--r) 0 0; border: 1px solid var(--parchment); cursor: pointer; }
+.rm-phase-header:not(.open) { border-radius: var(--r); margin-bottom: 6px; }
+.rpm-title { font-family: var(--display); font-size: 14px; font-weight: 600; color: var(--ink); }
+.rpm-meta { font-size: 11px; color: var(--ink4); }
+.rpm-progress { font-family: var(--mono); font-size: 10px; color: var(--ink3); }
+.rm-body { border: 1px solid var(--parchment); border-top: none; border-radius: 0 0 var(--r) var(--r); overflow: hidden; margin-bottom: 6px; }
+.rm-item { display: flex; align-items: flex-start; gap: 12px; padding: 11px 16px; background: #FDFAF6; border-bottom: 1px solid var(--cream2); transition: background 0.15s; cursor: pointer; }
+.rm-item:last-child { border-bottom: none; }
+.rm-item:hover { background: var(--cream); }
+.rm-check { width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid var(--parchment); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; transition: all 0.2s; background: white; }
+.rm-check:hover { border-color: var(--sage); }
+.rm-check.done { background: var(--sage); border-color: var(--sage); }
+.rm-check.done::after { content: '✓'; font-size: 10px; color: white; font-weight: 700; }
+.rm-name { font-size: 13px; color: var(--ink); font-weight: 400; line-height: 1.4; flex: 1; }
+.rm-name.done { text-decoration: line-through; color: var(--ink4); }
+.rm-res { font-size: 10px; color: var(--ink4); margin-top: 2px; font-weight: 300; }
+.rm-tag { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 3px; font-size: 9px; font-family: var(--mono); letter-spacing: 1px; white-space: nowrap; flex-shrink: 0; margin-top: 3px; }
+
+/* ── CASE CARDS ── */
+.case-card { background: #FDFAF6; border: 1px solid var(--cream3); border-radius: var(--r); padding: 16px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; gap: 8px; }
+.case-card:hover { box-shadow: var(--sh2); border-color: var(--parchment); }
+.case-card.done { background: var(--sage-l); border-color: rgba(122,144,128,0.3); }
+.cc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.cc-title { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.4; flex: 1; }
+.cc-title.done { text-decoration: line-through; color: var(--ink4); }
+.cc-type-badge { padding: 3px 10px; border-radius: 3px; font-size: 9px; font-family: var(--mono); letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+.cc-meta { font-size: 11px; color: var(--ink4); font-weight: 300; }
+.cc-bottom { display: flex; align-items: center; gap: 10px; }
+.stars { display: flex; gap: 2px; }
+.star-btn { font-size: 14px; cursor: pointer; transition: transform 0.1s; line-height: 1; }
+.star-btn:hover { transform: scale(1.2); }
+.btn-done { padding: 5px 14px; border-radius: 5px; border: 1.5px solid var(--parchment); background: white; color: var(--ink3); font-size: 11px; font-family: var(--body); cursor: pointer; transition: all 0.15s; font-weight: 500; }
+.btn-done:hover { border-color: var(--sage); color: var(--sage); }
+.btn-done.done { background: var(--sage); border-color: var(--sage); color: white; }
+.case-notes-area { width: 100%; padding: 8px 10px; background: var(--cream2); border: 1px solid var(--parchment); border-radius: 6px; color: var(--ink); font-family: var(--body); font-size: 11px; resize: none; outline: none; line-height: 1.5; }
+.case-notes-area:focus { border-color: var(--sage); }
+
+/* ── TEARDOWN GRID ── */
+.td-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.td-card { background: #FDFAF6; border: 1px solid var(--cream3); border-radius: var(--r2); padding: 20px; cursor: pointer; transition: all 0.2s; position: relative; }
+.td-card:hover { box-shadow: var(--sh3); transform: translateY(-2px); }
+.td-card.done { border-color: rgba(122,144,128,0.4); background: var(--sage-l); }
+.td-done-tag { position: absolute; top: 14px; right: 14px; font-family: var(--mono); font-size: 8px; letter-spacing: 1px; padding: 3px 8px; border-radius: 3px; background: var(--sage-l); color: var(--sage); border: 1px solid rgba(122,144,128,0.3); }
+.td-emoji { font-size: 28px; margin-bottom: 10px; }
+.td-name { font-family: var(--display); font-size: 18px; font-weight: 500; color: var(--ink); }
+.td-date { font-size: 10px; color: var(--ink4); margin-top: 3px; font-weight: 300; }
+.td-score { font-family: var(--display); font-size: 28px; font-weight: 300; color: var(--sage); margin-top: 8px; }
+.td-score span { font-size: 14px; color: var(--ink4); }
+.td-prompt { font-size: 11px; color: var(--ink4); margin-top: 8px; font-weight: 300; line-height: 1.5; }
+
+/* ── METRIC CARDS ── */
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.metric-card { background: #FDFAF6; border: 1px solid var(--cream3); border-radius: var(--r); padding: 14px; transition: all 0.15s; }
+.metric-card:hover { box-shadow: var(--sh1); }
+.mc-name { font-size: 13px; color: var(--ink); font-weight: 500; margin-bottom: 4px; }
+.mc-cat { font-family: var(--mono); font-size: 9px; color: var(--ink4); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.mc-sel { width: 100%; padding: 6px 10px; background: var(--cream2); border: 1px solid var(--parchment); border-radius: 6px; color: var(--ink); font-family: var(--body); font-size: 11px; outline: none; cursor: pointer; }
+.mc-sel:focus { border-color: var(--sage); }
+
+/* ── AARRR ── */
+.aarrr-card { background: #FDFAF6; border: 1px solid var(--cream3); border-radius: var(--r); padding: 16px; border-top: 3px solid; }
+.aarrr-stage { font-family: var(--display); font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+.aarrr-q { font-size: 12px; color: var(--ink3); font-style: italic; font-family: var(--display); margin-bottom: 8px; }
+.aarrr-metrics { font-size: 11px; color: var(--ink4); margin-bottom: 10px; font-weight: 300; }
+
+/* ── BOOKS ── */
+.book-card { background: #FDFAF6; border: 1px solid var(--cream3); border-radius: var(--r2); margin-bottom: 20px; overflow: hidden; box-shadow: var(--sh1); }
+.book-header { display: flex; gap: 20px; padding: 24px; border-bottom: 1px solid var(--cream3); }
+.book-spine { width: 68px; height: 90px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; }
+.book-meta { flex: 1; }
+.book-title { font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.book-author { font-size: 12px; color: var(--ink3); font-weight: 300; }
+.book-phase { font-family: var(--mono); font-size: 9px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
+.book-pct-big { font-family: var(--display); font-size: 44px; font-weight: 300; color: var(--ink); margin-top: 10px; letter-spacing: -0.02em; }
+.book-pct-big span { font-size: 18px; color: var(--ink4); }
+.book-body { padding: 20px 24px; }
+.ch-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--cream3); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+.ch-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: #FDFAF6; cursor: pointer; transition: background 0.1s; }
+.ch-item:hover { background: var(--cream); }
+.ch-box { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--parchment); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; background: white; }
+.ch-box:hover { border-color: var(--sage); }
+.ch-box.done { background: var(--sage); border-color: var(--sage); }
+.ch-box.done::after { content: '✓'; font-size: 9px; color: white; font-weight: 700; }
+.ch-text { font-size: 11.5px; color: var(--ink); line-height: 1.3; }
+.ch-text.done { text-decoration: line-through; color: var(--ink4); }
+.book-notes { width: 100%; padding: 10px 12px; background: var(--cream2); border: 1px solid var(--parchment); border-radius: 8px; color: var(--ink); font-family: var(--body); font-size: 12px; resize: none; outline: none; line-height: 1.6; }
+.book-notes:focus { border-color: var(--sage); }
+
+/* ── COMP TABLE ── */
+.comp-wrap { overflow-x: auto; }
+.comp-table { width: 100%; border-collapse: collapse; }
+.comp-table th { font-family: var(--mono); font-size: 9px; color: var(--ink4); letter-spacing: 2px; text-transform: uppercase; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--cream3); }
+.comp-table td { padding: 12px 14px; border-bottom: 1px solid var(--cream2); font-size: 12.5px; vertical-align: middle; }
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table tr:hover td { background: var(--cream); }
+.comp-badge { padding: 3px 10px; border-radius: 3px; font-size: 9px; font-family: var(--mono); letter-spacing: 1px; font-weight: 700; text-transform: uppercase; }
+.comp-badge.planned { background: var(--slate-l); color: var(--slate); }
+.comp-badge.applied { background: var(--gold-l); color: var(--gold); }
+.comp-badge.active { background: var(--sage-l); color: var(--sage); }
+.comp-badge.won { background: rgba(122,144,128,0.2); color: var(--sage); border: 1px solid rgba(122,144,128,0.4); }
+.comp-badge.lost { background: var(--cream2); color: var(--ink4); }
+.comp-sel { background: var(--cream2); border: 1px solid var(--parchment); border-radius: 5px; color: var(--ink); padding: 4px 8px; font-size: 11px; font-family: var(--body); outline: none; cursor: pointer; }
+
+/* ── MOCK INTERVIEW TRACKER ── */
+.mock-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px; background: #FDFAF6; border: 1px solid var(--cream3); border-radius: var(--r); margin-bottom: 8px; }
+.mock-num { font-family: var(--display); font-size: 22px; font-weight: 300; color: var(--ink4); min-width: 32px; }
+.mock-content { flex: 1; }
+.mock-q { font-size: 13px; color: var(--ink); font-weight: 500; margin-bottom: 4px; }
+.mock-answer { width: 100%; padding: 8px 10px; background: var(--cream2); border: 1px solid var(--parchment); border-radius: 6px; color: var(--ink); font-family: var(--body); font-size: 11.5px; resize: none; outline: none; line-height: 1.6; margin-top: 6px; }
+.mock-answer:focus { border-color: var(--sage); }
+.mock-score { display: flex; gap: 4px; align-items: center; margin-top: 6px; }
+.mock-tag { font-family: var(--mono); font-size: 9px; letter-spacing: 1px; padding: 2px 8px; border-radius: 3px; }
+
+/* ── CASEBOOK GUIDE ── */
+.cb-week { background: #FDFAF6; border: 1px solid var(--cream3); border-radius: var(--r); padding: 14px 16px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 14px; cursor: pointer; transition: all 0.15s; }
+.cb-week:hover { box-shadow: var(--sh1); }
+.cb-week.done { background: var(--sage-l); border-color: rgba(122,144,128,0.3); }
+.cb-wk-label { font-family: var(--mono); font-size: 9px; color: var(--gold); letter-spacing: 1px; white-space: nowrap; padding-top: 2px; }
+
+/* ── BUTTONS ── */
+.btn { padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-family: var(--body); font-size: 12.5px; font-weight: 500; transition: all 0.2s; }
+.btn-primary { background: var(--ink); color: #F7F4EF; }
+.btn-primary:hover { background: var(--ink2); transform: translateY(-1px); box-shadow: var(--sh2); }
+.btn-ghost { background: white; border: 1.5px solid var(--parchment); color: var(--ink3); }
+.btn-ghost:hover { border-color: var(--sage); color: var(--sage); }
+.btn-sm { padding: 7px 14px; font-size: 11.5px; border-radius: 6px; }
+
+/* ── TABS ── */
+.tabs { display: flex; gap: 2px; background: var(--cream2); border-radius: 8px; padding: 3px; width: fit-content; margin-bottom: 20px; flex-wrap: wrap; }
+.tab { padding: 6px 14px; border-radius: 6px; background: none; border: none; color: var(--ink3); cursor: pointer; font-size: 12px; font-family: var(--body); transition: all 0.15s; font-weight: 400; white-space: nowrap; }
+.tab.active { background: #FDFAF6; color: var(--ink); font-weight: 500; box-shadow: var(--sh1); }
+
+/* ── BOOST BANNER ── */
+.boost { display: flex; align-items: flex-start; gap: 14px; padding: 14px 18px; border-radius: var(--r); margin-bottom: 24px; }
+.boost.up { background: var(--sage-l); border: 1px solid rgba(122,144,128,0.25); }
+.boost.flat { background: var(--gold-l); border: 1px solid rgba(184,145,42,0.2); }
+.boost.start { background: var(--cream2); border: 1px solid var(--parchment); }
+.boost-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.boost-text { font-size: 13px; color: var(--ink3); line-height: 1.6; font-weight: 300; }
+.boost-text strong { color: var(--ink); font-weight: 600; }
+
+/* ── TOAST ── */
+.toast { position: fixed; bottom: 28px; right: 28px; background: var(--ink); color: #F7F4EF; padding: 12px 22px; border-radius: 8px; font-size: 12.5px; z-index: 9999; transform: translateY(60px); opacity: 0; transition: all 0.3s cubic-bezier(.4,0,.2,1); pointer-events: none; box-shadow: var(--sh3); font-weight: 500; letter-spacing: 0.01em; }
+.toast.show { transform: none; opacity: 1; }
+
+/* ── UTILS ── */
+.mt8 { margin-top: 8px; } .mt12 { margin-top: 12px; } .mt16 { margin-top: 16px; } .mt20 { margin-top: 20px; } .mt24 { margin-top: 24px; }
+.fb { display: flex; align-items: center; justify-content: space-between; }
+.f { display: flex; align-items: center; } .gap8 { gap: 8px; } .gap12 { gap: 12px; }
+.divider { height: 1px; background: var(--cream3); margin: 16px 0; }
+::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: var(--parchment); border-radius: 4px; }
+
+/* ── INPUT ── */
+.text-input { width: 100%; padding: 9px 12px; background: var(--cream2); border: 1px solid var(--parchment); border-radius: 8px; color: var(--ink); font-family: var(--body); font-size: 12.5px; outline: none; }
+.text-input:focus { border-color: var(--sage); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar">
+  <div class="sb-top">
+    <div class="sb-eyebrow">PM Career Dossier</div>
+    <div class="sb-name">Meet Shah</div>
+    <div class="sb-role">IIT Guwahati · Target: <em>Associate PM</em></div>
+  </div>
+
+  <div class="sb-score">
+    <div class="sb-score-label">APM Readiness</div>
+    <div>
+      <span class="sb-score-num" id="sb-num">0</span><span class="sb-score-unit">%</span>
+    </div>
+    <div class="sb-delta flat" id="sb-delta">Begin your preparation</div>
+    <div class="sb-subs mt12" id="sb-subs"></div>
+  </div>
+
+  <div class="nav-section-label">Overview</div>
+  <div class="nav-section">
+    <button class="nav-item active" onclick="nav('overview',this)"><span class="ni">◎</span>Dashboard</button>
+  </div>
+  <div class="nav-section-label">Product Preparation</div>
+  <div class="nav-section">
+    <button class="nav-item" onclick="nav('roadmap',this)"><span class="ni">↗</span>PM Roadmap</button>
+    <button class="nav-item" onclick="nav('cases',this)"><span class="ni">◻</span>Cases<span class="nbadge" id="nb-cases">0/50</span></button>
+    <button class="nav-item" onclick="nav('teardowns',this)"><span class="ni">◉</span>Teardowns<span class="nbadge" id="nb-td">0/25</span></button>
+    <button class="nav-item" onclick="nav('metrics',this)"><span class="ni">≋</span>PM Metrics</button>
+    <button class="nav-item" onclick="nav('mock',this)"><span class="ni">▷</span>Mock Interviews</button>
+  </div>
+  <div class="nav-section-label">Resources</div>
+  <div class="nav-section">
+    <button class="nav-item" onclick="nav('books',this)"><span class="ni">▣</span>Books</button>
+    <button class="nav-item" onclick="nav('casebooks',this)"><span class="ni">✦</span>Casebooks Guide</button>
+    <button class="nav-item" onclick="nav('comps',this)"><span class="ni">◈</span>Competitions</button>
+  </div>
+
+  <div class="sb-footer">
+    CGPA 7.2 &nbsp;·&nbsp; CF ~1250<br>
+    Campus season: <em>~6 weeks away</em><br>
+    Placement: <em>May 2027</em>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+
+<!-- ═══ OVERVIEW ═══ -->
+<div class="page active" id="page-overview">
+  <div class="ph">
+    <div class="ph-eyebrow">Daily View</div>
+    <div class="ph-title">Good morning, Meet.</div>
+    <div class="ph-sub">Your APM readiness at a glance — every action here compounds toward the offer.</div>
+  </div>
+
+  <div id="boost-wrap"></div>
+
+  <div class="g4" id="ov-stats"></div>
+
+  <div class="g2 mt20">
+    <div class="card">
+      <div class="slabel">APM Score Breakdown</div>
+      <div id="ov-breakdown"></div>
+    </div>
+    <div class="card">
+      <div class="slabel">Mentor's Focus This Week</div>
+      <div id="mentor-block" style="font-size:13px;color:var(--ink3);line-height:1.9;font-weight:300;"></div>
+    </div>
+  </div>
+
+  <div class="card mt20">
+    <div class="slabel">30-Day Activity</div>
+    <div id="heatmap" style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;"></div>
+  </div>
+
+  <div class="g2 mt20">
+    <div class="card">
+      <div class="slabel">Recent Cases</div>
+      <div id="ov-recent-cases"></div>
+    </div>
+    <div class="card">
+      <div class="slabel">Next Up on Roadmap</div>
+      <div id="ov-next-up"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ROADMAP ═══ -->
+<div class="page" id="page-roadmap">
+  <div class="ph">
+    <div class="ph-eyebrow">Phase-Locked Learning</div>
+    <div class="ph-title">PM Learning Roadmap</div>
+    <div class="ph-sub">Theory → Frameworks → Case Application — do not skip phases.</div>
+  </div>
+
+  <div class="g2">
+    <div>
+      <div class="card-sm mb16" style="margin-bottom:14px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-family:var(--display);font-size:15px;font-weight:500;">Overall Learning Progress</div>
+          <div id="rm-overall" style="font-family:var(--mono);font-size:12px;color:var(--ink3);">0/0</div>
+        </div>
+        <div class="prog-track mt12"><div class="prog-fill" id="rm-prog" style="width:0%;background:var(--sage)"></div></div>
+      </div>
+      <div id="pm-roadmap-list"></div>
+    </div>
+    <div>
+      <div class="slabel">Produscope Case Framework</div>
+      <div class="card-sm" id="produscope-list"></div>
+      <div class="slabel mt20">Case Type Reference</div>
+      <div class="card-sm" id="case-type-ref"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CASES ═══ -->
+<div class="page" id="page-cases">
+  <div class="ph">
+    <div class="ph-row">
+      <div>
+        <div class="ph-eyebrow">Practice Log</div>
+        <div class="ph-title">Product Cases</div>
+        <div class="ph-sub" id="cases-sub">0 of 50 cases solved</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="addCase()">+ Add Case</button>
+    </div>
+  </div>
+  <div class="prog-labels"><span>Progress to 50</span><span id="cases-pct-lbl">0%</span></div>
+  <div class="prog-track"><div class="prog-fill" id="cases-prog" style="width:0%;background:var(--sage)"></div></div>
+
+  <div class="tabs mt20" id="case-tabs">
+    <button class="tab active" onclick="filterCases('all',this)">All</button>
+    <button class="tab" onclick="filterCases('Guesstimate',this)">Guesstimate</button>
+    <button class="tab" onclick="filterCases('Metrics',this)">Metrics</button>
+    <button class="tab" onclick="filterCases('Product Improvement',this)">Improvement</button>
+    <button class="tab" onclick="filterCases('Product Analysis',this)">Analysis</button>
+    <button class="tab" onclick="filterCases('Product Design',this)">Design</button>
+    <button class="tab" onclick="filterCases('done',this)">Completed</button>
+  </div>
+  <div id="cases-list"></div>
+</div>
+
+<!-- ═══ TEARDOWNS ═══ -->
+<div class="page" id="page-teardowns">
+  <div class="ph">
+    <div class="ph-row">
+      <div>
+        <div class="ph-eyebrow">Weekly Habit</div>
+        <div class="ph-title">App Teardowns</div>
+        <div class="ph-sub" id="td-sub">0 of 25 done</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="addTeardown()">+ Add App</button>
+    </div>
+  </div>
+  <div class="prog-labels"><span>Progress to 25</span><span id="td-pct-lbl">0%</span></div>
+  <div class="prog-track"><div class="prog-fill" id="td-prog" style="width:0%;background:var(--gold)"></div></div>
+
+  <div class="card-inset mt20">
+    <div class="slabel">The Five Teardown Questions</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
+      <div style="background:#FDFAF6;border:1px solid var(--cream3);border-radius:8px;padding:10px 12px;"><div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:1px;margin-bottom:4px">Q1</div><div style="font-size:11.5px;color:var(--ink3)">Who is the user?</div></div>
+      <div style="background:#FDFAF6;border:1px solid var(--cream3);border-radius:8px;padding:10px 12px;"><div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:1px;margin-bottom:4px">Q2</div><div style="font-size:11.5px;color:var(--ink3)">Biggest pain point?</div></div>
+      <div style="background:#FDFAF6;border:1px solid var(--cream3);border-radius:8px;padding:10px 12px;"><div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:1px;margin-bottom:4px">Q3</div><div style="font-size:11.5px;color:var(--ink3)">Business model?</div></div>
+      <div style="background:#FDFAF6;border:1px solid var(--cream3);border-radius:8px;padding:10px 12px;"><div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:1px;margin-bottom:4px">Q4</div><div style="font-size:11.5px;color:var(--ink3)">One feature improvement?</div></div>
+      <div style="background:#FDFAF6;border:1px solid var(--cream3);border-radius:8px;padding:10px 12px;"><div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:1px;margin-bottom:4px">Q5</div><div style="font-size:11.5px;color:var(--ink3)">Success metric?</div></div>
+    </div>
+  </div>
+
+  <div class="td-grid mt20" id="td-grid"></div>
+</div>
+
+<!-- ═══ METRICS ═══ -->
+<div class="page" id="page-metrics">
+  <div class="ph">
+    <div class="ph-eyebrow">Know These Cold</div>
+    <div class="ph-title">PM Metrics Mastery</div>
+    <div class="ph-sub">Every APM interview tests metrics — depth matters more than breadth.</div>
+  </div>
+  <div class="metric-grid" id="metrics-grid"></div>
+  <div class="slabel mt24">AARRR Framework</div>
+  <div class="g3" id="aarrr-grid" style="grid-template-columns:repeat(5,1fr);"></div>
+</div>
+
+<!-- ═══ MOCK INTERVIEWS ═══ -->
+<div class="page" id="page-mock">
+  <div class="ph">
+    <div class="ph-eyebrow">Interview Simulation</div>
+    <div class="ph-title">Mock Interviews</div>
+    <div class="ph-sub">Product cases + behavioral + HR. Time yourself: 20 minutes per case, 2 minutes per behavioral.</div>
+  </div>
+
+  <div class="tabs" id="mock-tabs">
+    <button class="tab active" onclick="switchMock('case',this)">Case Practice</button>
+    <button class="tab" onclick="switchMock('behavioural',this)">Behavioural / HR</button>
+    <button class="tab" onclick="switchMock('log',this)">Mock Log</button>
+  </div>
+
+  <div id="mock-case-section">
+    <div class="card-inset" style="margin-bottom:16px;">
+      <div style="font-size:13px;color:var(--ink3);line-height:1.7;font-weight:300;">Pick any case from your casebooks. Set a 20-minute timer. Speak your answer out loud or write it below. Score yourself honestly. Do one per day minimum. The IITK casebook transcripts are your benchmark — read one solved example first, then attempt the next case blind.</div>
+    </div>
+    <div id="mock-case-list"></div>
+    <button class="btn btn-ghost btn-sm mt12" onclick="addMockCase()">+ Log a Custom Mock</button>
+  </div>
+
+  <div id="mock-beh-section" style="display:none;">
+    <div class="card-inset" style="margin-bottom:16px;">
+      <div style="font-size:13px;color:var(--ink3);line-height:1.7;font-weight:300;">These questions kill unprepared candidates. APM interviews at Swiggy, Meesho, CRED all include a behavioural round. Write a 2–3 line answer, then refine it. Use the STAR format: Situation → Task → Action → Result.</div>
+    </div>
+    <div id="mock-beh-list"></div>
+  </div>
+
+  <div id="mock-log-section" style="display:none;">
+    <div class="card">
+      <div class="slabel">Mock Interview History</div>
+      <div id="mock-history-list"></div>
+      <button class="btn btn-ghost btn-sm mt12" onclick="logMock()">+ Log Mock Session</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BOOKS ═══ -->
+<div class="page" id="page-books">
+  <div class="ph">
+    <div class="ph-eyebrow">Reading Plan</div>
+    <div class="ph-title">Books</div>
+    <div class="ph-sub">Phase-locked reading — Decode & Conquer first, then Inspired, then Lean Playbook.</div>
+  </div>
+  <div id="books-list"></div>
+</div>
+
+<!-- ═══ CASEBOOKS ═══ -->
+<div class="page" id="page-casebooks">
+  <div class="ph">
+    <div class="ph-eyebrow">Your Uploaded PDFs</div>
+    <div class="ph-title">Casebooks Study Guide</div>
+    <div class="ph-sub">Three PDFs — IITG Produscope, IITK PM Casebook 2024-25, E-Cell Product Case Guide. These are your primary interview prep material.</div>
+  </div>
+
+  <div class="boost start" style="margin-bottom:20px;">
+    <div class="boost-icon">✦</div>
+    <div class="boost-text"><strong>Do these casebooks — 100%.</strong> The E-Cell Product Case Guide alone has 20 solved cases across all 5 question types. The IITK Casebook has 21 real interview cases with full Q&A transcripts. The Produscope is your own college's framework — the people interviewing you on campus likely know this exact format. PDFs → Books → YouTube, in that order of priority for your timeline.</div>
+  </div>
+
+  <div class="slabel">8-Week Study Roadmap</div>
+  <div id="cb-roadmap-list"></div>
+
+  <div class="g2 mt20">
+    <div class="card">
+      <div class="slabel">IITG Produscope Framework Checklist</div>
+      <div id="produscope-check"></div>
+    </div>
+    <div class="card">
+      <div class="slabel">E-Cell Guide — 5 Case Types</div>
+      <div id="ecell-types"></div>
+    </div>
+  </div>
+
+  <div class="card mt20">
+    <div class="slabel">IITK Casebook — 21 Interview Cases</div>
+    <div style="font-size:12px;color:var(--ink4);margin-bottom:14px;font-weight:300;">All derived from real IIT Kanpur PM placement interviews. Tick each as you practice.</div>
+    <div id="iitk-list" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;"></div>
+  </div>
+</div>
+
+<!-- ═══ COMPETITIONS ═══ -->
+<div class="page" id="page-comps">
+  <div class="ph">
+    <div class="ph-row">
+      <div>
+        <div class="ph-eyebrow">2 hrs/week</div>
+        <div class="ph-title">Case Competitions</div>
+        <div class="ph-sub">Product + Consulting track — competitions build your deck and your story.</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="addComp()">+ Add</button>
+    </div>
+  </div>
+  <div class="tabs" id="comp-tabs">
+    <button class="tab active" onclick="filterComps('all',this)">All</button>
+    <button class="tab" onclick="filterComps('planned',this)">Planned</button>
+    <button class="tab" onclick="filterComps('applied',this)">Applied</button>
+    <button class="tab" onclick="filterComps('active',this)">Active</button>
+    <button class="tab" onclick="filterComps('won',this)">Won</button>
+  </div>
+  <div class="card comp-wrap">
+    <table class="comp-table">
+      <thead><tr><th>Competition</th><th>Organizer</th><th>Type</th><th>Deadline</th><th>Prize</th><th>Status</th><th>Priority</th></tr></thead>
+      <tbody id="comp-tbody"></tbody>
+    </table>
+  </div>
+  <div class="card mt16">
+    <div class="slabel">Winning Decks to Study</div>
+    <div id="decks-list"></div>
+    <input class="text-input mt12" id="deck-inp" placeholder="Add a winning deck to study (e.g. BCG Platinion 2024 winners)..." onkeydown="if(event.key==='Enter')addDeck()">
+  </div>
+</div>
+
+</main>
+</div>
+<div class="toast" id="toast">Saved</div>
+
+<script>
+// ═══ STATE ═══
+const SK='meet_pm_v4';
+let S={checks:{},cases:[],tds:[],comps:[],bookNotes:{},decks:[],mocks:[],mockAnswers:{},history:{}};
+const load=()=>{try{const d=localStorage.getItem(SK);if(d)S={...S,...JSON.parse(d)};}catch(e){}};
+const save=()=>{try{localStorage.setItem(SK,JSON.stringify(S));}catch(e){}};
+const toast=(m='Saved')=>{const el=document.getElementById('toast');el.textContent=m;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200);};
+const today=()=>new Date().toISOString().split('T')[0];
+const fmtDate=d=>new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short'});
+
+// ═══ DATA ═══
+const PM_RM=[
+  {id:'ph1',phase:'Phase 1 — Foundation',week:'Week 1',color:'var(--sage)',items:[
+    {id:'p1a',t:'What is Product Management?',r:'PM School YouTube',tag:'Theory'},
+    {id:'p1b',t:'PM vs Product Analyst vs BA — Know the differences',r:'PM School'},
+    {id:'p1c',t:'Product Lifecycle — all four stages',r:'PM School'},
+    {id:'p1d',t:'Read IITG Produscope PDF end to end',r:'Your uploaded PDF',tag:'Case Prep'},
+  ]},
+  {id:'ph2',phase:'Phase 2 — User Research',week:'Week 2',color:'var(--gold)',items:[
+    {id:'p2a',t:'User Research Methods',r:'PM School'},
+    {id:'p2b',t:'User Personas — what, why, how to build one',r:'PM School + Produscope p.2'},
+    {id:'p2c',t:'Jobs To Be Done (JTBD) Framework',r:'PM School'},
+    {id:'p2d',t:'Pain Points — before-launch vs after-launch types',r:'Produscope p.3-5'},
+    {id:'p2e',t:'Solve first 2 E-Cell cases: Reynolds Pen + IITG Mess App',r:'E-Cell Guide + your own',tag:'Practice'},
+  ]},
+  {id:'ph3',phase:'Phase 3 — Metrics',week:'Week 3',color:'var(--mahog)',items:[
+    {id:'p3a',t:'DAU / WAU / MAU — definitions and when to use each',r:'PM School + E-Cell Guide'},
+    {id:'p3b',t:'Retention, Activation, Conversion Funnel',r:'PM School'},
+    {id:'p3c',t:'North Star Metric — how to define one',r:'E-Cell Guide p.10'},
+    {id:'p3d',t:'AARRR Framework — all 5 stages',r:'E-Cell Guide p.11'},
+    {id:'p3e',t:'Product Life Cycle → metric alignment by stage',r:'E-Cell Guide p.10'},
+    {id:'p3f',t:'Solve Metrics cases: Apple Health + Amazon Prime',r:'E-Cell Guide p.12-15',tag:'Practice'},
+  ]},
+  {id:'ph4',phase:'Phase 4 — Prioritization',week:'Week 4',color:'var(--slate)',items:[
+    {id:'p4a',t:'RICE Framework — Reach × Impact × Confidence / Effort',r:'PM School'},
+    {id:'p4b',t:'MoSCoW Framework',r:'PM School'},
+    {id:'p4c',t:'Value vs Effort 2×2 matrix',r:'Produscope p.7'},
+    {id:'p4d',t:'A/B Testing Basics',r:'PM School'},
+    {id:'p4e',t:'Read Decode & Conquer Ch.1-3',r:'Book',tag:'Reading'},
+  ]},
+  {id:'ph5',phase:'Phase 5 — Case Mastery',week:'Week 5–8',color:'var(--rose)',items:[
+    {id:'p5a',t:'Competitor Analysis Framework',r:'Produscope p.5-6'},
+    {id:'p5b',t:'GTM Strategy — 9 steps',r:'Produscope p.10'},
+    {id:'p5c',t:'Wireframing Basics — Figma orientation',r:'Produscope p.10'},
+    {id:'p5d',t:'Guesstimate — Demand/Supply side framework',r:'E-Cell Guide p.2-3',tag:'Case Prep'},
+    {id:'p5e',t:'IITK Casebook — read 5 solved transcript cases',r:'IITK PDF'},
+    {id:'p5f',t:'Mock interview: record yourself, 20 min per case',r:'Self practice',tag:'Mock'},
+    {id:'p5g',t:'Solve 10 cases across all 5 types from E-Cell Guide',r:'E-Cell Guide',tag:'Practice'},
+  ]},
+];
+
+const PRODSCP=[
+  {id:'fr1',t:'Problem Statement — scope and summarize clearly'},
+  {id:'fr2',t:'User Persona — 2-3 fictional segments with bio + pain points'},
+  {id:'fr3',t:'Pain Points — before-launch and after-launch listed separately'},
+  {id:'fr4',t:'Competitor Analysis — 3 competitors, strengths, weaknesses, market share'},
+  {id:'fr5',t:'Proposed Solutions — features mapped to pain points (with cons)'},
+  {id:'fr6',t:'Feature Prioritization — RICE / MoSCoW / Value-Effort matrix'},
+  {id:'fr7',t:'Success Metrics / KPIs — North Star + 4 supporting metrics'},
+  {id:'fr8',t:'User Journey — entry point to final action, every step'},
+  {id:'fr9',t:'GTM Strategy — awareness, launch, adoption plan'},
+  {id:'fr10',t:'Wireframing — Figma sketch of your proposed feature'},
+];
+
+const CTYPES=[
+  {name:'Guesstimate',desc:'Estimate a number using demand or supply side approach. No one expects accuracy — they want structured logic.',color:'var(--slate)'},
+  {name:'Metrics',desc:'Define success for a product or feature. North Star + supporting metrics + critique your own metrics.',color:'var(--sage)'},
+  {name:'Product Improvement',desc:'Improve an existing product. Full Produscope framework: persona → pain → solutions → prioritize → metrics.',color:'var(--mahog)'},
+  {name:'Product Analysis',desc:'Diagnose a metric drop or product problem. Structured root cause analysis.',color:'var(--gold)'},
+  {name:'Product Design',desc:'Design a product from scratch. Starts with user need, not a feature list.',color:'var(--rose)'},
+];
+
+const DEFAULT_CASES=[
+  // Guesstimates from E-Cell
+  {id:1,t:"Netflix's Global Daily Data Consumption",type:"Guesstimate",diff:"Beginner",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:2,t:"BigBasket's Daily Order Fulfillment Volume",type:"Guesstimate",diff:"Beginner",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:3,t:"Flipkart's Festive Season Electronics Sales",type:"Guesstimate",diff:"Beginner",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:4,t:"UpGrad's Monthly Course Enrollments",type:"Guesstimate",diff:"Beginner",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:5,t:"Blinkit's Daily Grocery Delivery Weight",type:"Guesstimate",diff:"Beginner",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:6,t:"Number of taxis in Mumbai",type:"Guesstimate",diff:"Beginner",src:"IITK Casebook",done:false,score:0,notes:''},
+  // Metrics
+  {id:7,t:"Apple Health Daily Steps — Define key metrics",type:"Metrics",diff:"Beginner",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:8,t:"Amazon Prime — Full performance metrics framework",type:"Metrics",diff:"Intermediate",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:9,t:"Netflix 'My List' Feature — Success metrics",type:"Metrics",diff:"Intermediate",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:10,t:"Tinder Swipe Feature — North Star metric",type:"Metrics",diff:"Intermediate",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:11,t:"What is the North Star Metric for Swiggy?",type:"Metrics",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:12,t:"Metrics to track for a new UPI feature",type:"Metrics",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+  // Product Improvement
+  {id:13,t:"Reynolds Blue Ballpoint Pen — Improve UX",type:"Product Improvement",diff:"Beginner",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:14,t:"GitHub UI/UX — Improve for student developers",type:"Product Improvement",diff:"Intermediate",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:15,t:"WhatsApp for Business — Improve for Indian SMBs",type:"Product Improvement",diff:"Intermediate",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:16,t:"Facebook Marketplace — Improve trust and safety",type:"Product Improvement",diff:"Intermediate",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:17,t:"IITG Mess App — Redesign for student needs",type:"Product Improvement",diff:"Beginner",src:"Your campus",done:false,score:0,notes:''},
+  {id:18,t:"WhatsApp — Improve for college freshers",type:"Product Improvement",diff:"Beginner",src:"Original",done:false,score:0,notes:''},
+  {id:19,t:"Swiggy — Improve Retention for Tier-2 cities",type:"Product Improvement",diff:"Intermediate",src:"Original",done:false,score:0,notes:''},
+  {id:20,t:"Improve Google Maps for rural users",type:"Product Improvement",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:21,t:"How would you improve LinkedIn for students?",type:"Product Improvement",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:22,t:"Improve Spotify for Indian users",type:"Product Improvement",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:23,t:"How would you improve Zomato ratings accuracy?",type:"Product Improvement",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+  // Product Analysis
+  {id:24,t:"Paytm Monthly Active Users — Diagnose drop",type:"Product Analysis",diff:"Intermediate",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:25,t:"UpGrad Certificate Completion Rate — Low rate root cause",type:"Product Analysis",diff:"Intermediate",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:26,t:"Rapido Rider Rating — Why did ratings drop?",type:"Product Analysis",diff:"Intermediate",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:27,t:"SpiceJet Flight Cancellations — Root cause analysis",type:"Product Analysis",diff:"Advanced",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:28,t:"What went wrong with Paytm Mall?",type:"Product Analysis",diff:"Advanced",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:29,t:"Instagram Reels engagement dropped — diagnose",type:"Product Analysis",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:30,t:"How would you revive a declining feature?",type:"Product Analysis",diff:"Advanced",src:"IITK Casebook",done:false,score:0,notes:''},
+  // Product Design
+  {id:31,t:"Donation Impact Tracker — Design from scratch",type:"Product Design",diff:"Intermediate",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:32,t:"College Connect App — Design for IIT students",type:"Product Design",diff:"Intermediate",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:33,t:"Public Transport Scheduler — Design for Guwahati",type:"Product Design",diff:"Advanced",src:"E-Cell IITG Guide",done:false,score:0,notes:''},
+  {id:34,t:"ATM design for a visually impaired person",type:"Product Design",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:35,t:"Design a ride-sharing product for college campuses",type:"Product Design",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:36,t:"Design a product for remote learning in India",type:"Product Design",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:37,t:"App for mental health for college students",type:"Product Design",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:38,t:"Design a product for farmers in Tier-3 India",type:"Product Design",diff:"Advanced",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:39,t:"Build a product combining Netflix + LinkedIn",type:"Product Design",diff:"Advanced",src:"IITK Casebook",done:false,score:0,notes:''},
+  {id:40,t:"Design CRED feature to increase engagement",type:"Product Design",diff:"Intermediate",src:"IITK Casebook",done:false,score:0,notes:''},
+];
+
+const DEFAULT_TDS=[
+  {id:1,e:'🍔',n:'Swiggy',done:false,date:'',score:'',notes:''},
+  {id:2,e:'💬',n:'WhatsApp',done:false,date:'',score:'',notes:''},
+  {id:3,e:'🎵',n:'Spotify',done:false,date:'',score:'',notes:''},
+  {id:4,e:'💼',n:'LinkedIn',done:false,date:'',score:'',notes:''},
+  {id:5,e:'📸',n:'Instagram',done:false,date:'',score:'',notes:''},
+  {id:6,e:'🎥',n:'YouTube',done:false,date:'',score:'',notes:''},
+  {id:7,e:'🛵',n:'Zomato',done:false,date:'',score:'',notes:''},
+  {id:8,e:'🛒',n:'Zepto',done:false,date:'',score:'',notes:''},
+  {id:9,e:'💳',n:'CRED',done:false,date:'',score:'',notes:''},
+  {id:10,e:'🚗',n:'Ola / Uber',done:false,date:'',score:'',notes:''},
+  {id:11,e:'🎓',n:'UpGrad',done:false,date:'',score:'',notes:''},
+  {id:12,e:'📱',n:'Meesho',done:false,date:'',score:'',notes:''},
+];
+
+const PM_METRICS=[
+  {id:'m1',n:'DAU (Daily Active Users)',cat:'Engagement'},
+  {id:'m2',n:'MAU (Monthly Active Users)',cat:'Engagement'},
+  {id:'m3',n:'Stickiness (DAU/MAU)',cat:'Engagement'},
+  {id:'m4',n:'Retention Rate',cat:'Engagement'},
+  {id:'m5',n:'Churn Rate',cat:'Engagement'},
+  {id:'m6',n:'Session Duration',cat:'Engagement'},
+  {id:'m7',n:'Feature Adoption Rate',cat:'Engagement'},
+  {id:'m8',n:'Bounce Rate',cat:'Engagement'},
+  {id:'m9',n:'Activation Rate',cat:'Acquisition'},
+  {id:'m10',n:'Conversion Funnel',cat:'Acquisition'},
+  {id:'m11',n:'CAC (Customer Acquisition Cost)',cat:'Revenue'},
+  {id:'m12',n:'LTV (Lifetime Value)',cat:'Revenue'},
+  {id:'m13',n:'MRR (Monthly Recurring Revenue)',cat:'Revenue'},
+  {id:'m14',n:'NPS (Net Promoter Score)',cat:'Satisfaction'},
+  {id:'m15',n:'CSAT (Customer Satisfaction Score)',cat:'Satisfaction'},
+  {id:'m16',n:'North Star Metric',cat:'Strategy'},
+  {id:'m17',n:'A/B Testing',cat:'Strategy'},
+  {id:'m18',n:'AARRR Framework',cat:'Strategy'},
+];
+
+const AARRR=[
+  {s:'Acquisition',q:'How do users find you?',m:'Traffic, Sign-up rate, CAC',c:'var(--slate)'},
+  {s:'Activation',q:'First great experience?',m:'Onboarding completion, Day-1 retention',c:'var(--sage)'},
+  {s:'Retention',q:'Do they come back?',m:'DAU/MAU, Day-7, Churn rate',c:'var(--gold)'},
+  {s:'Revenue',q:'How do you make money?',m:'LTV, MRR, ARPU',c:'var(--mahog)'},
+  {s:'Referral',q:'Do they tell others?',m:'NPS, K-factor, Referral rate',c:'var(--rose)'},
+];
+
+const BOOKS=[
+  {id:'bk1',e:'⚡',t:'Decode and Conquer',a:'Lewis C. Lin',phase:'Phase 1 — Interview Prep',col:'#2A1F3D',
+   chs:['PM Interview Overview & Mindset','Product Design Questions','Analytical Questions','Strategy Questions','Estimation Questions','Behavioral Questions','Leadership Questions','Metrics Questions','Execution Framework','Case Studies Part 1','Case Studies Part 2','Mock Interview 1','Mock Interview 2','Final Review & Frameworks']},
+  {id:'bk2',e:'💡',t:'Inspired',a:'Marty Cagan',phase:'Phase 2 — Understanding PM',col:'#1A3020',
+   chs:['The Role of Product Manager','The Path to Product','The Right Product Manager','Head of Product','VP of Product','Product Teams','Problems with Product Roadmaps','Alternative to Roadmaps','Product Vision & Principles','Product Objectives','Product Discovery','Discovery Framing','Discovery Planning','Discovery Ideation','Discovery Prototyping','Discovery Testing']},
+  {id:'bk3',e:'🚀',t:'The Lean Product Playbook',a:'Dan Olsen',phase:'Phase 3 — Long-term PM Growth',col:'#2A1800',
+   chs:['Achieving Product-Market Fit','Determine Target Customers','Identify Underserved Needs','Define Value Proposition','Specify MVP Feature Set','Create MVP Prototype','Test with Customers','Iterate & Improve','Lean UX & Design','Agile Development for PM','Analytics & Metrics','Scaling the Product']},
+];
+
+const CB_RM=[
+  {id:'cbr1',w:'Week 1',a:'Read IITG Produscope PDF fully — take notes on every framework section',s:'Produscope PDF'},
+  {id:'cbr2',w:'Week 2',a:'Read E-Cell Product Case Guide — focus on Guesstimate and Metrics sections',s:'E-Cell Guide PDF'},
+  {id:'cbr3',w:'Week 3',a:'Solve all 5 Guesstimate cases from E-Cell Guide using demand/supply framework',s:'E-Cell Guide p.2-8'},
+  {id:'cbr4',w:'Week 4',a:'Solve 2 Metrics cases: Apple Health + Amazon Prime from E-Cell Guide',s:'E-Cell Guide p.12-15'},
+  {id:'cbr5',w:'Week 5',a:'Solve 2 Product Improvement: Reynolds Pen + GitHub from E-Cell Guide',s:'E-Cell Guide'},
+  {id:'cbr6',w:'Week 6',a:'Read IITK Casebook — study 5 solved transcripts as benchmark for your own answers',s:'IITK PDF'},
+  {id:'cbr7',w:'Week 7',a:'Attempt 5 IITK cases blind (no transcript) then compare — with a partner ideally',s:'IITK Casebook'},
+  {id:'cbr8',w:'Week 8',a:'Full mock: pick any case, time yourself to 20 minutes, record or write it out',s:'All 3 PDFs'},
+];
+
+const PRODSCOPE_CHK=[
+  {id:'psc1',t:'Problem Statement — scope the problem clearly before solving'},
+  {id:'psc2',t:'User Persona — fictional, specific, with bio and dissatisfaction points'},
+  {id:'psc3',t:'Pain Points — two types: pre-launch and post-launch'},
+  {id:'psc4',t:'Competitor Analysis — 3 players, strengths, weaknesses, market share'},
+  {id:'psc5',t:'Proposed Solutions — feature → pain point mapping table'},
+  {id:'psc6',t:'Feature Prioritization — apply a framework, justify your choice'},
+  {id:'psc7',t:'Success Metrics — North Star + 4 supporting KPIs, get creative'},
+  {id:'psc8',t:'User Journey / Flow — entry to exit, all decision paths'},
+  {id:'psc9',t:'GTM Strategy — awareness plan for the new feature'},
+  {id:'psc10',t:'Wireframing — Figma or hand-drawn sketch of your solution'},
+];
+
+const ECELL_TYPES=[
+  {t:'Guesstimate (5 cases)',d:'Use demand-side or supply-side. Clarify scope first. Sanity check at the end.',c:'var(--slate)'},
+  {t:'Metrics (4 cases)',d:'Clarify goal → identify lifecycle stage → define North Star → 4-5 supporting metrics → critique.',c:'var(--sage)'},
+  {t:'Product Improvement (4 cases)',d:'Full Produscope framework. Present as a deck with visuals.',c:'var(--mahog)'},
+  {t:'Product Analysis (4 cases)',d:'Diagnose metric drop. Check internal vs external causes. Propose solutions.',c:'var(--gold)'},
+  {t:'Product Design (3 cases)',d:'Start with the user need, not the feature. Use JTBD.',c:'var(--rose)'},
+];
+
+const IITK_CASES=[
+  'Design an ATM for a visually impaired person',
+  'Improve Google Maps for rural users',
+  'Design a product for remote learning in India',
+  'Why did Instagram Reels engagement drop?',
+  'How would you monetize WhatsApp?',
+  'Design a ride-sharing product for college campuses',
+  'Estimate the market size of EdTech in India',
+  'How would you improve LinkedIn for students?',
+  'North Star Metric for Swiggy',
+  'Design grocery delivery for senior citizens',
+  'Improve Spotify for Indian users',
+  "What went wrong with Paytm Mall?",
+  'Design a CRED feature to increase engagement',
+  'Prioritize features for a B2B SaaS tool',
+  'Number of taxis in Mumbai',
+  'Mental health app for college students',
+  'Improve Zomato ratings accuracy',
+  'Metrics for a new UPI feature',
+  'Product for farmers in Tier-3 India',
+  'How to revive a declining feature',
+  'Build a product combining Netflix + LinkedIn',
+];
+
+const DEFAULT_COMPS=[
+  {id:1,n:'BCG Platinion Campus Challenge',o:'BCG',t:'Consulting/Tech',d:'Oct 2025',p:'PPO opportunity',s:'planned',pri:'P1'},
+  {id:2,n:"L'Oréal Brandstorm",o:"L'Oréal",t:'Brand/Product',d:'Nov 2025',p:'Global finals',s:'planned',pri:'P1'},
+  {id:3,n:'KPMG Ideation Challenge',o:'KPMG',t:'Consulting',d:'Sep 2025',p:'Internship shortlist',s:'planned',pri:'P2'},
+  {id:4,n:'Flipkart Grid',o:'Flipkart',t:'Product + Tech',d:'Aug 2025',p:'Internship offer',s:'planned',pri:'P1'},
+  {id:5,n:'Unilever ULIP',o:'Unilever',t:'Marketing/Product',d:'Dec 2025',p:'Internship + PPO',s:'planned',pri:'P1'},
+  {id:6,n:'IIM Case Competitions',o:'IIM A/B/C',t:'Consulting',d:'Rolling',p:'Certificate + Network',s:'planned',pri:'P2'},
+  {id:7,n:'Produscope — IITG E-Cell',o:'IITG E-Cell',t:'Product',d:'Annual',p:'Recognition + PM network',s:'planned',pri:'P1'},
+];
+
+const MOCK_CASES=[
+  {id:'mc1',q:'Improve Instagram for older users (40+)',time:'20 min',type:'Product Improvement'},
+  {id:'mc2',q:'What is the North Star Metric for Notion?',time:'20 min',type:'Metrics'},
+  {id:'mc3',q:'Estimate the number of daily food orders in Bangalore',time:'20 min',type:'Guesstimate'},
+  {id:'mc4',q:'Design a product for daily commuters in Mumbai',time:'20 min',type:'Product Design'},
+  {id:'mc5',q:'Daily active users of CRED dropped 20% — why?',time:'20 min',type:'Product Analysis'},
+];
+
+const BEHAVIOURAL_Qs=[
+  {id:'bq1',q:'Why do you want to be a Product Manager?',tip:'Be specific. Tie it to a real product moment that made you think about user problems.'},
+  {id:'bq2',q:'Tell me about a product you use daily and love. What would you improve?',tip:'Use the Produscope framework. Pick one pain point. Propose one feature. Give one metric.'},
+  {id:'bq3',q:'Describe a time you led a project without formal authority.',tip:'SWC or Techniche experience works perfectly here. Situation → Task → Action → Result.'},
+  {id:'bq4',q:'Tell me about a time you made a decision with incomplete data.',tip:'Show structured thinking. What data did you have? What did you assume? What was the outcome?'},
+  {id:'bq5',q:"What's your process when you disagree with a teammate?",tip:'Show empathy + data. You never just give in, and you never bulldoze.'},
+  {id:'bq6',q:'Where do you see yourself in 5 years?',tip:'PM → Senior PM → Director. Show the path. Show you know what each stage requires.'},
+  {id:'bq7',q:'Why our company specifically? (Swiggy / CRED / Meesho)',tip:'Research their product deeply. Mention a specific feature or decision they made and what you think about it.'},
+  {id:'bq8',q:'Tell me about a product failure you were involved in.',tip:'Show reflection and what you learned. Do not catastrophize. Show how you course-corrected.'},
+  {id:'bq9',q:'How do you prioritize when everything is urgent?',tip:'RICE / MoSCoW. Show a real example from SWC or Techniche.'},
+  {id:'bq10',q:'What does good product sense look like to you?',tip:'Empathy for users + data literacy + business awareness. Give an example of each.'},
+];
+
+// ═══ INIT ═══
+load();
+if(!S.cases||S.cases.length===0) S.cases=JSON.parse(JSON.stringify(DEFAULT_CASES));
+if(!S.tds||S.tds.length===0) S.tds=JSON.parse(JSON.stringify(DEFAULT_TDS));
+if(!S.comps||S.comps.length===0) S.comps=JSON.parse(JSON.stringify(DEFAULT_COMPS));
+if(!S.mocks) S.mocks=[];
+if(!S.mockAnswers) S.mockAnswers={};
+buildAll();
+
+function buildAll(){
+  computeAndRenderSidebar();
+  buildOverview();
+  buildRoadmap();
+  buildCasesPage('all');
+  buildTeardowns();
+  buildMetrics();
+  buildMockPage('case');
+  buildBooks();
+  buildCasebookGuide();
+  buildComps('all');
+}
+
+// ═══ READINESS ═══
+function computeR(){
+  const rmItems=PM_RM.flatMap(p=>p.items);
+  const rmDone=rmItems.filter(i=>S.checks[i.id]).length;
+  const pmPct=Math.round(rmDone/rmItems.length*100);
+  const tdDone=S.tds.filter(t=>t.done).length;
+  const tdPct=Math.min(100,Math.round(tdDone/25*100));
+  const cDone=S.cases.filter(c=>c.done).length;
+  const cPct=Math.min(100,Math.round(cDone/50*100));
+  const metDone=PM_METRICS.filter(m=>(S.checks['ms_'+m.id]||'')===('completed')).length;
+  const metPct=Math.round(metDone/PM_METRICS.length*100);
+  const bookPct=Math.round(BOOKS.reduce((acc,b)=>{
+    const d=b.chs.filter((_,i)=>S.checks[b.id+'_'+i]).length;
+    return acc+d/b.chs.length;
+  },0)/BOOKS.length*100);
+  const mockDone=S.mocks.length;
+  const apm=Math.round(pmPct*0.28+cPct*0.25+tdPct*0.18+metPct*0.14+bookPct*0.1+Math.min(100,mockDone*10)*0.05);
+  return {pmPct,tdPct,cPct,metPct,bookPct,apm,tdDone,cDone,mockDone};
+}
+
+function computeAndRenderSidebar(){
+  const r=computeR();
+  const prev=S.prevApm||0; const delta=r.apm-prev;
+  document.getElementById('sb-num').textContent=r.apm;
+  const dEl=document.getElementById('sb-delta');
+  if(delta>=5){dEl.className='sb-delta up';dEl.innerHTML='↑ +'+delta+'% since last session';}
+  else if(delta>0){dEl.className='sb-delta up';dEl.innerHTML='↑ +'+delta+'% progress';}
+  else if(r.apm===0){dEl.className='sb-delta flat';dEl.innerHTML='Begin your preparation';}
+  else{dEl.className='sb-delta flat';dEl.innerHTML='Log activity to progress';}
+  const subs=[
+    {n:'PM Learning',v:r.pmPct,c:'#7A9080'},{n:'Cases',v:r.cPct,c:'#B8912A'},
+    {n:'Teardowns',v:r.tdPct,c:'#6B3F2A'},{n:'Metrics',v:r.metPct,c:'#4A5568'},
+    {n:'Books',v:r.bookPct,c:'#9E5A5A'},
+  ];
+  document.getElementById('sb-subs').innerHTML=subs.map(s=>`
+    <div class="ssub-row">
+      <div class="ssub-dot" style="background:${s.c}"></div>
+      <div class="ssub-name">${s.n}</div>
+      <div class="ssub-track"><div class="ssub-fill" style="width:${s.v}%;background:${s.c}"></div></div>
+      <div class="ssub-val">${s.v}%</div>
+    </div>`).join('');
+  const bn=document.getElementById('nb-cases'); if(bn) bn.textContent=r.cDone+'/50';
+  const bt=document.getElementById('nb-td'); if(bt) bt.textContent=r.tdDone+'/25';
+  S.prevApm=r.apm; save();
+}
+
+// ═══ OVERVIEW ═══
+function buildOverview(){
+  const r=computeR();
+  const prev=S.prevApm||0; const delta=r.apm-prev;
+  // Boost banner
+  const bw=document.getElementById('boost-wrap');
+  if(bw){
+    if(delta>=5) bw.innerHTML=`<div class="boost up"><div class="boost-icon">↑</div><div class="boost-text"><strong>You've increased ${delta}% since your last session.</strong> That's real movement. Your APM readiness now sits at ${r.apm}%. Keep this pace.</div></div>`;
+    else if(delta>0) bw.innerHTML=`<div class="boost up"><div class="boost-icon">↑</div><div class="boost-text"><strong>+${delta}% progress.</strong> Consistent gains compound. Solve one more case or complete a teardown to build on this.</div></div>`;
+    else if(r.apm===0) bw.innerHTML=`<div class="boost start"><div class="boost-icon">✦</div><div class="boost-text"><strong>Your dossier is ready.</strong> Start with the PM Roadmap — tick off Phase 1 this week. One step at a time.</div></div>`;
+    else bw.innerHTML=`<div class="boost flat"><div class="boost-icon">◎</div><div class="boost-text"><strong>You're at ${r.apm}% APM readiness.</strong> Log a teardown or mark a case done today to move the needle forward.</div></div>`;
+  }
+  // Stat cards
+  const sc=document.getElementById('ov-stats');
+  if(sc) sc.innerHTML=[
+    {label:'APM Readiness',val:r.apm+'%',hint:'Composite score',accent:'sage'},
+    {label:'Cases Solved',val:r.cDone+'/50',hint:'Target: 50 cases',accent:'gold'},
+    {label:'App Teardowns',val:r.tdDone+'/25',hint:'One per week',accent:'mahog'},
+    {label:'Mock Interviews',val:r.mockDone+' done',hint:'Target: 10+',accent:'slate'},
+  ].map(c=>`<div class="stat-card ${c.accent}">
+    <div class="sc-label">${c.label}</div>
+    <div class="sc-num">${c.val}</div>
+    <div class="sc-hint">${c.hint}</div>
+  </div>`).join('');
+  // Breakdown
+  const bd=document.getElementById('ov-breakdown');
+  if(bd) bd.innerHTML=[
+    {l:'PM Learning (28%)',v:r.pmPct,c:'var(--sage)'},
+    {l:'Cases (25%)',v:r.cPct,c:'var(--gold)'},
+    {l:'Teardowns (18%)',v:r.tdPct,c:'var(--mahog)'},
+    {l:'Metrics (14%)',v:r.metPct,c:'var(--slate)'},
+    {l:'Books (10%)',v:r.bookPct,c:'var(--rose)'},
+    {l:'Mock Interviews (5%)',v:Math.min(100,r.mockDone*10),c:'var(--ink3)'},
+  ].map(i=>`<div style="margin-top:10px;">
+    <div class="prog-labels"><span>${i.l}</span><span>${i.v}%</span></div>
+    <div class="prog-track"><div class="prog-fill" style="width:${i.v}%;background:${i.c}"></div></div>
+  </div>`).join('');
+  // Mentor
+  const mb=document.getElementById('mentor-block');
+  if(mb){
+    const tips=[];
+    if(r.pmPct<20) tips.push('Begin PM Roadmap Phase 1 this week. Watch the first three PM School videos and read the Produscope PDF. Vocabulary before practice.');
+    if(r.cDone<5) tips.push('Solve your first case — pick the Reynolds Pen case from E-Cell Guide. It\'s beginner-friendly and teaches the full framework in 20 minutes.');
+    if(r.tdDone<3) tips.push('Start your teardown habit today. Open Swiggy. Answer the 5 questions. Write three lines per question. That\'s a teardown done.');
+    if(r.pmPct>35&&r.cDone<12) tips.push('Theory is in place — shift to practice mode now. Aim for 3 cases this week. Use the E-Cell Guide interview transcripts as your benchmark.');
+    if(r.mockDone===0&&r.cDone>5) tips.push('You\'ve solved cases — time to simulate the real thing. Do one mock interview: pick a case, set a 20-minute timer, speak out loud.');
+    if(tips.length===0) tips.push('Strong progress. Start preparing your behavioral answers — "Why PM?", "Tell me about a product you love." These questions decide close calls.');
+    mb.innerHTML=tips.map((t,i)=>`<div style="padding:9px 0;border-bottom:1px solid var(--cream3);${i===tips.length-1?'border:none':''}">${t}</div>`).join('');
+  }
+  // Heatmap
+  const hm=document.getElementById('heatmap');
+  if(hm){
+    hm.innerHTML='';
+    for(let i=29;i>=0;i--){
+      const d=new Date();d.setDate(d.getDate()-i);
+      const ds=d.toISOString().split('T')[0];
+      const act=S.history[ds]||0;
+      const bg=act>=3?'var(--sage)':act>=1?'rgba(122,144,128,0.4)':'var(--cream3)';
+      const isT=i===0;
+      hm.innerHTML+=`<div title="${ds}${act?' — '+act+' actions':''}" style="width:22px;height:22px;border-radius:5px;background:${bg};cursor:pointer;${isT?'outline:2px solid var(--gold);outline-offset:2px':''}" onclick="logActivity()"></div>`;
+    }
+    hm.innerHTML+=`<span style="font-size:11px;color:var(--ink4);margin-left:12px;font-weight:300;">← 30 days. Click today to log.</span>`;
+  }
+  // Recent cases
+  const rc=document.getElementById('ov-recent-cases');
+  if(rc){
+    const done=S.cases.filter(c=>c.done).slice(-4).reverse();
+    if(done.length===0) rc.innerHTML=`<div style="font-size:12px;color:var(--ink4);font-weight:300;padding:8px 0;">No cases solved yet. Start with a Guesstimate.</div>`;
+    else rc.innerHTML=done.map(c=>`<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--cream2);">
+      <div style="width:7px;height:7px;border-radius:50%;background:var(--sage);flex-shrink:0;"></div>
+      <div style="flex:1;font-size:12.5px;color:var(--ink)">${c.t}</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink4)">${c.type.split(' ')[0]}</div>
+    </div>`).join('');
+  }
+  // Next up roadmap
+  const nu=document.getElementById('ov-next-up');
+  if(nu){
+    const pending=PM_RM.flatMap(p=>p.items).filter(i=>!S.checks[i.id]).slice(0,4);
+    if(pending.length===0) nu.innerHTML=`<div style="font-size:12px;color:var(--sage);font-weight:400;padding:8px 0;">Roadmap complete. Remarkable.</div>`;
+    else nu.innerHTML=pending.map(i=>`<div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--cream2);">
+      <div style="width:7px;height:7px;border-radius:50%;background:var(--parchment);flex-shrink:0;margin-top:5px;"></div>
+      <div style="flex:1;">
+        <div style="font-size:12.5px;color:var(--ink)">${i.t}</div>
+        <div style="font-size:10px;color:var(--ink4);margin-top:2px;font-weight:300;">${i.r}</div>
+      </div>
+    </div>`).join('');
+  }
+}
+
+function logActivity(){
+  const ds=today();S.history[ds]=(S.history[ds]||0)+1;save();buildOverview();computeAndRenderSidebar();toast('Activity logged');
+}
+
+// ═══ NAV ═══
+function nav(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  if(el)el.classList.add('active');
+}
+
+// ═══ ROADMAP ═══
+function buildRoadmap(){
+  const allItems=PM_RM.flatMap(p=>p.items);
+  const done=allItems.filter(i=>S.checks[i.id]).length;
+  const ov=document.getElementById('rm-overall');if(ov)ov.textContent=done+'/'+allItems.length;
+  const pr=document.getElementById('rm-prog');if(pr)pr.style.width=Math.round(done/allItems.length*100)+'%';
+
+  const c=document.getElementById('pm-roadmap-list');if(!c)return;c.innerHTML='';
+  PM_RM.forEach(phase=>{
+    const pd=phase.items.filter(i=>S.checks[i.id]).length;
+    const isOpen=pd<phase.items.length;
+    c.innerHTML+=`<div class="rm-phase">
+      <div class="rm-phase-header${isOpen?' open':''}" onclick="togglePhase(this)">
+        <div>
+          <div class="rpm-title">${phase.phase}</div>
+          <div class="rpm-meta" style="font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:1px;margin-top:2px;">${phase.week}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="rpm-progress">${pd}/${phase.items.length}</span>
+          <span style="font-size:11px;color:var(--ink4);">${isOpen?'▾':'▸'}</span>
+        </div>
+      </div>
+      <div class="rm-body" style="${isOpen?'':'display:none;'}">
+        ${phase.items.map(item=>{
+          const done=S.checks[item.id];
+          const tagColor=item.tag==='Practice'?'background:var(--sage-l);color:var(--sage);':item.tag==='Reading'?'background:var(--gold-l);color:var(--gold);':item.tag==='Mock'?'background:var(--mahog-l);color:var(--mahog);':'display:none;';
+          return `<div class="rm-item" onclick="toggleRMItem('${item.id}',this)">
+            <div class="rm-check${done?' done':''}"></div>
+            <div style="flex:1;">
+              <div class="rm-name${done?' done':''}">${item.t}</div>
+              <div class="rm-res">📖 ${item.r}</div>
+              ${item.tag?`<span class="rm-tag" style="${tagColor};margin-top:3px;">${item.tag}</span>`:''}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  });
+
+  const ps=document.getElementById('produscope-list');if(!ps)return;
+  ps.innerHTML=PRODSCP.map(s=>{
+    const done=S.checks[s.id];
+    return `<div class="rm-item" onclick="toggleSimpleCheck('${s.id}',this)" style="padding:9px 12px;">
+      <div class="rm-check${done?' done':''}"></div>
+      <div class="rm-name${done?' done':''}" style="font-size:12px;">${s.t}</div>
+    </div>`;
+  }).join('');
+
+  const ct=document.getElementById('case-type-ref');if(!ct)return;
+  ct.innerHTML=CTYPES.map(c=>`<div style="padding:10px 0;border-bottom:1px solid var(--cream2);">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:${c.color};flex-shrink:0;"></div>
+      <div style="font-size:13px;font-weight:500;color:var(--ink);">${c.name}</div>
+    </div>
+    <div style="font-size:11px;color:var(--ink4);font-weight:300;padding-left:16px;line-height:1.5;">${c.desc}</div>
+  </div>`).join('');
+}
+
+function togglePhase(header){
+  const body=header.nextElementSibling;const arr=header.querySelector('span:last-child');
+  const isOpen=body.style.display!=='none';
+  body.style.display=isOpen?'none':'block';
+  if(arr)arr.textContent=isOpen?'▸':'▾';
+  header.classList.toggle('open',!isOpen);
+}
+
+function toggleRMItem(id,row){
+  S.checks[id]=!S.checks[id];
+  const ch=row.querySelector('.rm-check');const nm=row.querySelector('.rm-name');
+  if(ch)ch.className='rm-check'+(S.checks[id]?' done':'');
+  if(nm){if(S.checks[id])nm.classList.add('done');else nm.classList.remove('done');}
+  save();computeAndRenderSidebar();buildOverview();
+  if(S.checks[id]){const ds=today();S.history[ds]=(S.history[ds]||0)+1;save();}
+}
+
+function toggleSimpleCheck(id,row){
+  S.checks[id]=!S.checks[id];
+  const ch=row.querySelector('.rm-check');const nm=row.querySelector('.rm-name');
+  if(ch)ch.className='rm-check'+(S.checks[id]?' done':'');
+  if(nm){if(S.checks[id])nm.classList.add('done');else nm.classList.remove('done');}
+  save();computeAndRenderSidebar();
+}
+
+// ═══ CASES ═══
+let cFilter='all';
+function filterCases(f,el){
+  cFilter=f;document.querySelectorAll('#case-tabs .tab').forEach(t=>t.classList.remove('active'));
+  if(el)el.classList.add('active');buildCasesPage(f);
+}
+function buildCasesPage(filter){
+  const done=S.cases.filter(c=>c.done).length;const pct=Math.min(100,Math.round(done/50*100));
+  const sub=document.getElementById('cases-sub');if(sub)sub.textContent=done+' of 50 cases solved';
+  const pl=document.getElementById('cases-pct-lbl');if(pl)pl.textContent=pct+'%';
+  const pp=document.getElementById('cases-prog');if(pp)pp.style.width=pct+'%';
+  const nb=document.getElementById('nb-cases');if(nb)nb.textContent=done+'/50';
+  const c=document.getElementById('cases-list');if(!c)return;c.innerHTML='';
+  const typeCol={'Guesstimate':'var(--slate)','Metrics':'var(--sage)','Product Improvement':'var(--mahog)','Product Analysis':'var(--gold)','Product Design':'var(--rose)'};
+  let list=filter==='done'?S.cases.filter(c=>c.done):filter==='all'?S.cases:S.cases.filter(c=>c.type===filter);
+  const grouped={};
+  list.forEach(ca=>{if(!grouped[ca.type])grouped[ca.type]=[];grouped[ca.type].push(ca);});
+  Object.entries(grouped).forEach(([type,cases])=>{
+    const typeDone=cases.filter(c=>c.done).length;
+    c.innerHTML+=`<div class="slabel" style="margin-top:16px;">${type} <span style="color:var(--ink5)">${typeDone}/${cases.length} done</span></div>`;
+    cases.forEach(ca=>{
+      const col=typeCol[ca.type]||'var(--slate)';
+      const stars=[1,2,3,4,5].map(n=>`<span class="star-btn" onclick="setScore(${ca.id},${n})" style="color:${n<=ca.score?'var(--gold)':'var(--parchment)'}">${n<=ca.score?'★':'☆'}</span>`).join('');
+      c.innerHTML+=`<div class="case-card${ca.done?' done':''}">
+        <div class="cc-top">
+          <div class="cc-title${ca.done?' done':''}">${ca.t}</div>
+          <div class="cc-type-badge" style="background:${col}18;color:${col};border:1px solid ${col}33;">${ca.type}</div>
+        </div>
+        <div class="cc-meta">${ca.diff} · <span style="color:var(--ink5);">${ca.src}</span></div>
+        <div class="cc-bottom">
+          <div class="stars">${stars}</div>
+          <button class="btn-done${ca.done?' done':''}" onclick="toggleCase(${ca.id})">${ca.done?'✓ Done':'Mark Done'}</button>
+        </div>
+        <textarea class="case-notes-area" rows="2" placeholder="Notes, key learnings, what you got wrong..." onchange="saveNotes(${ca.id},this.value)">${ca.notes||''}</textarea>
+      </div>`;
+    });
+  });
+  if(list.length===0)c.innerHTML=`<div style="padding:40px;text-align:center;color:var(--ink4);font-weight:300;">No cases here yet.</div>`;
+}
+
+function toggleCase(id){
+  const ca=S.cases.find(c=>c.id===id);
+  if(ca){ca.done=!ca.done;if(ca.done){const ds=today();S.history[ds]=(S.history[ds]||0)+2;}}
+  save();buildCasesPage(cFilter);computeAndRenderSidebar();buildOverview();
+  toast(ca&&ca.done?'Case completed':'Marked incomplete');
+}
+function setScore(id,score){const ca=S.cases.find(c=>c.id===id);if(ca){ca.score=score;}save();buildCasesPage(cFilter);}
+function saveNotes(id,val){const ca=S.cases.find(c=>c.id===id);if(ca){ca.notes=val;}save();}
+function addCase(){
+  const t=prompt('Case title:');if(!t)return;
+  const type=prompt('Type (Guesstimate/Metrics/Product Improvement/Product Analysis/Product Design):','Product Improvement');
+  const src=prompt('Source:','Self practice');
+  const maxId=Math.max(...S.cases.map(c=>c.id),0);
+  S.cases.push({id:maxId+1,t,type:type||'Product Improvement',diff:'Intermediate',src:src||'Self',done:false,score:0,notes:''});
+  save();buildCasesPage(cFilter);computeAndRenderSidebar();toast('Case added');
+}
+
+// ═══ TEARDOWNS ═══
+function buildTeardowns(){
+  const done=S.tds.filter(t=>t.done).length;const pct=Math.min(100,Math.round(done/25*100));
+  const sub=document.getElementById('td-sub');if(sub)sub.textContent=done+' of 25 done';
+  const pl=document.getElementById('td-pct-lbl');if(pl)pl.textContent=pct+'%';
+  const pp=document.getElementById('td-prog');if(pp)pp.style.width=pct+'%';
+  const nb=document.getElementById('nb-td');if(nb)nb.textContent=done+'/25';
+  const c=document.getElementById('td-grid');if(!c)return;c.innerHTML='';
+  S.tds.forEach(td=>{
+    c.innerHTML+=`<div class="td-card${td.done?' done':''}" onclick="openTD(${td.id})">
+      ${td.done?`<div class="td-done-tag">Done</div>`:''}
+      <div class="td-emoji">${td.e}</div>
+      <div class="td-name">${td.n}</div>
+      <div class="td-date">${td.date||''}</div>
+      ${td.score?`<div class="td-score">${td.score}<span>/10</span></div>`:`<div class="td-prompt">Tap to analyze →</div>`}
+    </div>`;
+  });
+  c.innerHTML+=`<div class="td-card" style="border:1.5px dashed var(--parchment);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;cursor:pointer;" onclick="addTeardown()">
+    <div style="font-size:22px;color:var(--ink5);">+</div>
+    <div style="font-size:12px;color:var(--ink4);margin-top:6px;font-weight:300;">Add App</div>
+  </div>`;
+}
+
+function openTD(id){
+  const td=S.tds.find(t=>t.id===id);if(!td)return;
+  const score=prompt(`Teardown: ${td.n}\n\nAnswer the 5 questions:\n1. Who is the user?\n2. Biggest pain point?\n3. Business model?\n4. One feature improvement?\n5. Success metric?\n\nSelf-score /10:`,'');
+  if(score===null)return;
+  td.done=true;td.score=score;td.date=fmtDate(new Date());
+  const ds=today();S.history[ds]=(S.history[ds]||0)+1;
+  save();buildTeardowns();computeAndRenderSidebar();buildOverview();toast(`${td.n} teardown done`);
+}
+function addTeardown(){
+  const n=prompt('App name:');if(!n)return;
+  const e=prompt('Emoji:','📱')||'📱';
+  const maxId=Math.max(...S.tds.map(t=>t.id),0);
+  S.tds.push({id:maxId+1,e,n,done:false,date:'',score:'',notes:''});
+  save();buildTeardowns();toast('App added');
+}
+
+// ═══ METRICS ═══
+function buildMetrics(){
+  const c=document.getElementById('metrics-grid');if(!c)return;c.innerHTML='';
+  PM_METRICS.forEach(m=>{
+    const s=S.checks['ms_'+m.id]||'not-started';
+    const dotCol=s==='completed'?'var(--sage)':s==='in-progress'?'var(--gold)':'var(--parchment)';
+    c.innerHTML+=`<div class="metric-card">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+        <div style="width:7px;height:7px;border-radius:50%;background:${dotCol};flex-shrink:0;"></div>
+        <div class="mc-name">${m.n}</div>
+      </div>
+      <div class="mc-cat">${m.cat}</div>
+      <select class="mc-sel" onchange="setMetric('${m.id}',this.value)">
+        <option value="not-started"${s==='not-started'?' selected':''}>Not started</option>
+        <option value="in-progress"${s==='in-progress'?' selected':''}>In progress</option>
+        <option value="completed"${s==='completed'?' selected':''}>Mastered</option>
+      </select>
+    </div>`;
+  });
+  const ag=document.getElementById('aarrr-grid');if(!ag)return;ag.innerHTML='';
+  AARRR.forEach(a=>{
+    const s=S.checks['ar_'+a.s]||'not-started';
+    ag.innerHTML+=`<div class="aarrr-card" style="border-top-color:${a.c};">
+      <div class="aarrr-stage" style="color:${a.c};">${a.s}</div>
+      <div class="aarrr-q">"${a.q}"</div>
+      <div class="aarrr-metrics">${a.m}</div>
+      <select class="mc-sel" onchange="setAARRR('${a.s}',this.value)">
+        <option value="not-started"${s==='not-started'?' selected':''}>Not started</option>
+        <option value="in-progress"${s==='in-progress'?' selected':''}>In progress</option>
+        <option value="completed"${s==='completed'?' selected':''}>Mastered</option>
+      </select>
+    </div>`;
+  });
+}
+function setMetric(id,v){S.checks['ms_'+id]=v;save();computeAndRenderSidebar();buildMetrics();}
+function setAARRR(s,v){S.checks['ar_'+s]=v;save();}
+
+// ═══ MOCK INTERVIEWS ═══
+let mockSection='case';
+function switchMock(section,el){
+  mockSection=section;
+  document.querySelectorAll('#mock-tabs .tab').forEach(t=>t.classList.remove('active'));
+  if(el)el.classList.add('active');
+  document.getElementById('mock-case-section').style.display=section==='case'?'block':'none';
+  document.getElementById('mock-beh-section').style.display=section==='behavioural'?'block':'none';
+  document.getElementById('mock-log-section').style.display=section==='log'?'block':'none';
+  if(section==='log')buildMockLog();
+}
+function buildMockPage(section){
+  buildMockCases();buildMockBeh();buildMockLog();
+}
+function buildMockCases(){
+  const c=document.getElementById('mock-case-list');if(!c)return;
+  c.innerHTML=MOCK_CASES.map(m=>{
+    const ans=S.mockAnswers['mc_ans_'+m.id]||'';
+    const done=S.checks['mc_done_'+m.id];
+    return `<div class="mock-item" style="${done?'background:var(--sage-l);border-color:rgba(122,144,128,0.3)':''}">
+      <div class="mock-num">${done?'✓':MOCK_CASES.indexOf(m)+1}</div>
+      <div class="mock-content" style="flex:1;">
+        <div class="mock-q">${m.q}</div>
+        <div style="display:flex;gap:8px;margin-top:4px;">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:1px;">${m.type}</span>
+          <span style="font-family:var(--mono);font-size:9px;color:var(--ink4);">⏱ ${m.time}</span>
+        </div>
+        <textarea class="mock-answer" rows="3" placeholder="Write your answer here — or use as a prompt for verbal practice..." onchange="saveMockAns('${m.id}',this.value)">${ans}</textarea>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <button class="btn-done${done?' done':''}" onclick="toggleMockDone('${m.id}')">${done?'✓ Done':'Mark Done'}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function saveMockAns(id,v){S.mockAnswers['mc_ans_'+id]=v;save();}
+function toggleMockDone(id){
+  S.checks['mc_done_'+id]=!S.checks['mc_done_'+id];
+  save();buildMockCases();
+}
+function addMockCase(){
+  const q=prompt('Case prompt:');if(!q)return;
+  MOCK_CASES.push({id:'mc_custom_'+Date.now(),q,time:'20 min',type:'Custom'});
+  buildMockCases();
+}
+function buildMockBeh(){
+  const c=document.getElementById('mock-beh-list');if(!c)return;
+  c.innerHTML=BEHAVIOURAL_Qs.map((q,i)=>{
+    const ans=S.mockAnswers['beh_'+q.id]||'';
+    return `<div class="mock-item">
+      <div class="mock-num">${i+1}</div>
+      <div class="mock-content" style="flex:1;">
+        <div class="mock-q">${q.q}</div>
+        <div style="font-size:11px;color:var(--sage);font-weight:300;margin-top:3px;font-style:italic;">💡 ${q.tip}</div>
+        <textarea class="mock-answer" rows="3" placeholder="Draft your 2-3 line answer using STAR format..." onchange="saveBehAns('${q.id}',this.value)">${ans}</textarea>
+      </div>
+    </div>`;
+  }).join('');
+}
+function saveBehAns(id,v){S.mockAnswers['beh_'+id]=v;save();}
+function buildMockLog(){
+  const c=document.getElementById('mock-history-list');if(!c)return;
+  if(S.mocks.length===0){c.innerHTML=`<div style="font-size:12px;color:var(--ink4);font-weight:300;padding:8px 0;">No mock sessions logged yet.</div>`;return;}
+  c.innerHTML=S.mocks.map((m,i)=>`<div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--cream2);">
+    <div style="font-family:var(--display);font-size:18px;color:var(--ink4);min-width:24px;">${i+1}</div>
+    <div style="flex:1;"><div style="font-size:13px;font-weight:500;">${m.case}</div><div style="font-size:11px;color:var(--ink4);margin-top:2px;">${m.date} · Score: ${m.score||'—'}/10</div></div>
+    <div style="font-size:11px;color:var(--sage);">${m.notes||''}</div>
+  </div>`).join('');
+}
+function logMock(){
+  const c=prompt('Which case did you practice?');if(!c)return;
+  const score=prompt('Self-score /10:','7');
+  const notes=prompt('Key takeaway in one line:','');
+  S.mocks.push({case:c,score,notes,date:fmtDate(new Date())});
+  const ds=today();S.history[ds]=(S.history[ds]||0)+3;
+  save();buildMockLog();computeAndRenderSidebar();buildOverview();toast('Mock session logged');
+}
+
+// ═══ BOOKS ═══
+function buildBooks(){
+  const c=document.getElementById('books-list');if(!c)return;c.innerHTML='';
+  BOOKS.forEach(book=>{
+    const done=book.chs.filter((_,i)=>S.checks[book.id+'_'+i]).length;
+    const pct=Math.round(done/book.chs.length*100);
+    const notes=S.bookNotes[book.id]||'';
+    c.innerHTML+=`<div class="book-card">
+      <div class="book-header">
+        <div class="book-spine" style="background:${book.col};">${book.e}</div>
+        <div class="book-meta">
+          <div class="book-title">${book.t}</div>
+          <div class="book-author">by ${book.a}</div>
+          <div class="book-phase">${book.phase}</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:8px;">
+            <div class="book-pct-big">${pct}<span>%</span></div>
+            <div style="flex:1;">
+              <div class="prog-track"><div class="prog-fill" style="width:${pct}%;background:var(--sage);"></div></div>
+              <div style="font-size:10px;color:var(--ink4);margin-top:4px;font-weight:300;">${done} of ${book.chs.length} chapters</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="book-body">
+        <div class="ch-list">
+          ${book.chs.map((ch,i)=>{
+            const chDone=S.checks[book.id+'_'+i];
+            return `<div class="ch-item" onclick="toggleCh('${book.id}',${i})">
+              <div class="ch-box${chDone?' done':''}"></div>
+              <span class="ch-text${chDone?' done':''}">${i+1}. ${ch}</span>
+            </div>`;
+          }).join('')}
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:2px;margin-bottom:6px;">KEY NOTES</div>
+        <textarea class="book-notes" rows="3" placeholder="Key learnings, frameworks, quotes worth remembering..." onchange="saveBookNote('${book.id}',this.value)">${notes}</textarea>
+      </div>
+    </div>`;
+  });
+}
+function toggleCh(bId,i){
+  S.checks[bId+'_'+i]=!S.checks[bId+'_'+i];
+  save();buildBooks();computeAndRenderSidebar();buildOverview();
+}
+function saveBookNote(id,v){S.bookNotes[id]=v;save();}
+
+// ═══ CASEBOOK GUIDE ═══
+function buildCasebookGuide(){
+  const cb=document.getElementById('cb-roadmap-list');if(!cb)return;
+  cb.innerHTML=CB_RM.map(item=>{
+    const done=S.checks[item.id];
+    return `<div class="cb-week${done?' done':''}" onclick="toggleSimpleCheck('${item.id}',this)">
+      <div class="rm-check${done?' done':''}"></div>
+      <div style="flex:1;">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:1px;margin-bottom:3px;">${item.w} · ${item.s}</div>
+        <div class="rm-name${done?' done':''}">${item.a}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const pc=document.getElementById('produscope-check');if(!pc)return;
+  pc.innerHTML=PRODSCOPE_CHK.map(s=>{
+    const done=S.checks[s.id];
+    return `<div class="rm-item" onclick="toggleSimpleCheck('${s.id}',this)" style="padding:9px 12px;">
+      <div class="rm-check${done?' done':''}"></div>
+      <div class="rm-name${done?' done':''}" style="font-size:12px;">${s.t}</div>
+    </div>`;
+  }).join('');
+
+  const et=document.getElementById('ecell-types');if(!et)return;
+  et.innerHTML=ECELL_TYPES.map(t=>`<div style="padding:11px 0;border-bottom:1px solid var(--cream2);">
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:${t.c};flex-shrink:0;"></div>
+      <div style="font-size:13px;font-weight:500;color:var(--ink);">${t.t}</div>
+    </div>
+    <div style="font-size:11px;color:var(--ink4);font-weight:300;padding-left:16px;line-height:1.6;">${t.d}</div>
+  </div>`).join('');
+
+  const il=document.getElementById('iitk-list');if(!il)return;
+  il.innerHTML=IITK_CASES.map((ca,i)=>{
+    const id='iitk_'+i;const done=S.checks[id];
+    return `<div style="display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border-radius:7px;cursor:pointer;background:${done?'var(--sage-l)':'#FDFAF6'};border:1px solid ${done?'rgba(122,144,128,0.3)':'var(--cream3)'};" onclick="toggleSimpleCheck('${id}',this)">
+      <div class="rm-check${done?' done':''}" style="width:17px;height:17px;margin-top:1px;flex-shrink:0;"></div>
+      <div style="font-size:11.5px;color:${done?'var(--ink4)':'var(--ink)'};${done?'text-decoration:line-through;':''}">${i+1}. ${ca}</div>
+    </div>`;
+  }).join('');
+}
+
+// ═══ COMPETITIONS ═══
+let compF='all';
+function filterComps(f,el){
+  compF=f;document.querySelectorAll('#comp-tabs .tab').forEach(t=>t.classList.remove('active'));
+  if(el)el.classList.add('active');buildComps(f);
+}
+function buildComps(filter){
+  const c=document.getElementById('comp-tbody');if(!c)return;c.innerHTML='';
+  const list=filter==='all'?S.comps:S.comps.filter(co=>co.s===filter);
+  list.forEach(co=>{
+    c.innerHTML+=`<tr>
+      <td style="font-weight:500;">${co.n}</td>
+      <td style="color:var(--ink3);font-weight:300;">${co.o}</td>
+      <td style="color:var(--ink4);font-size:11px;">${co.t}</td>
+      <td style="font-family:var(--mono);font-size:11px;color:var(--ink3);">${co.d}</td>
+      <td style="font-size:11px;color:var(--ink3);font-weight:300;">${co.p}</td>
+      <td><select class="comp-sel" onchange="setCompS(${co.id},this.value)">
+        <option value="planned"${co.s==='planned'?' selected':''}>Planned</option>
+        <option value="applied"${co.s==='applied'?' selected':''}>Applied</option>
+        <option value="active"${co.s==='active'?' selected':''}>Active</option>
+        <option value="won"${co.s==='won'?' selected':''}>Won</option>
+        <option value="lost"${co.s==='lost'?' selected':''}>Finished</option>
+      </select></td>
+      <td><span class="comp-badge ${co.pri==='P1'?'applied':co.pri==='P2'?'planned':'lost'}">${co.pri}</span></td>
+    </tr>`;
+  });
+  const dl=document.getElementById('decks-list');if(!dl)return;
+  if(!S.decks||S.decks.length===0){dl.innerHTML=`<div style="font-size:12px;color:var(--ink4);font-weight:300;padding:8px 0;">No decks added yet.</div>`;return;}
+  dl.innerHTML=S.decks.map((d,i)=>`<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--cream2);">
+    <div style="width:6px;height:6px;border-radius:50%;background:var(--sage);flex-shrink:0;"></div>
+    <span style="flex:1;font-size:13px;">${d}</span>
+    <button onclick="removeDeck(${i})" style="background:none;border:none;color:var(--ink4);cursor:pointer;font-size:16px;">×</button>
+  </div>`).join('');
+}
+function setCompS(id,v){const co=S.comps.find(c=>c.id===id);if(co)co.s=v;save();buildComps(compF);}
+function addComp(){
+  const n=prompt('Competition name:');if(!n)return;
+  const o=prompt('Organizer:','');const t=prompt('Type:','Product');const d=prompt('Deadline:','TBA');const p=prompt('Prize:','');
+  const maxId=Math.max(...S.comps.map(c=>c.id),0);
+  S.comps.push({id:maxId+1,n,o,t,d,p,s:'planned',pri:'P2'});
+  save();buildComps(compF);toast('Competition added');
+}
+function addDeck(){
+  const inp=document.getElementById('deck-inp');if(!inp.value.trim())return;
+  if(!S.decks)S.decks=[];S.decks.push(inp.value.trim());inp.value='';
+  save();buildComps(compF);toast('Deck added');
+}
+function removeDeck(i){if(S.decks)S.decks.splice(i,1);save();buildComps(compF);}
+</script>
+</body>
+</html>
